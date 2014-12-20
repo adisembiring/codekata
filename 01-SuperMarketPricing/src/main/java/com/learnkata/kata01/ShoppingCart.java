@@ -11,7 +11,6 @@ import java.util.Optional;
 public class ShoppingCart {
     private List<CartItem> items;
     private List<Discount> discounts;
-    private float totalPrice;
 
     public ShoppingCart() {
         items = new ArrayList<>();
@@ -25,19 +24,6 @@ public class ShoppingCart {
             CartItem item = getItem(product);
             item.addQuantity(quantity);
         }
-        recalculateTotal();
-    }
-
-    private void recalculateTotal() {
-        totalPrice = 0;
-        items.forEach(item -> {
-            Optional<Discount> discount = getProductDiscount(item);
-            if (discount.isPresent()) {
-                totalPrice += discount.get().calculatePrice(item);
-            } else {
-                totalPrice += item.getQuantity() * item.getProduct().getPrice();
-            }
-        });
     }
 
     private Optional<Discount> getProductDiscount(CartItem item) {
@@ -49,6 +35,15 @@ public class ShoppingCart {
     }
 
     public float getTotalPrice() {
+        float totalPrice = 0;
+        for (CartItem item : items) {
+            Optional<Discount> discount = getProductDiscount(item);
+            if (discount.isPresent()) {
+                totalPrice += discount.get().calculatePrice(item);
+            } else {
+                totalPrice += item.getQuantity() * item.getProduct().getPrice();
+            }
+        }
         return totalPrice;
     }
 
@@ -59,7 +54,6 @@ public class ShoppingCart {
     private CartItem getItem(Product product) {
         return items.stream().filter(p -> p.getProduct().equals(product)).findFirst().get();
     }
-
 
     public void addDiscountPolicy(Discount discount) {
         discounts.add(discount);
