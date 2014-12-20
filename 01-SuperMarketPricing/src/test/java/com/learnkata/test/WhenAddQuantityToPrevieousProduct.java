@@ -23,6 +23,6 @@ public class WhenAddQuantityToPrevieousProduct extends ShopingCartContext {
 
     @Test
     public void price_multiply_to_two() {
-        assertEquals(citato.getPrice() * 2, cart.getTotalPrice(), 0);
+        assertEquals(citato.getPrice() * 2, cart.getTotal(), 0);
     }
 }

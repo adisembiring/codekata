@@ -20,7 +20,7 @@ public class WhenAddItemToEmptyCartWithOneQuantity extends ShopingCartContext {
 
     @Test
     public void total_price_equal_to_item_price() {
-        assertEquals(citato.getPrice(), cart.getTotalPrice(), 0);
+        assertEquals(citato.getPrice(), cart.getTotal(), 0);
     }
 
 }

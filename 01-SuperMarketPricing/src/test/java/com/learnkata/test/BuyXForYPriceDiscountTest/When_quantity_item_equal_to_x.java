@@ -16,6 +16,6 @@ public class When_quantity_item_equal_to_x extends BuyXForYPriceDiscountContext 
 
     @Test
     public void total_should_equal_to_discount_price() {
-        assertEquals(pringlesDiscount.getDiscountPrice(), cart.getTotalPrice(), 0);
+        assertEquals(pringlesDiscount.getDiscountPrice(), cart.getTotal(), 0);
     }
 }

@@ -18,6 +18,6 @@ public class When_quantity_item_double_with_x extends BuyXForYPriceDiscountConte
     @Test
     public void total_should_equal_to_discount_price() {
         float expected = pringlesDiscount.getDiscountPrice() * 2;
-        assertEquals(expected, cart.getTotalPrice(), 0);
+        assertEquals(expected, cart.getTotal(), 0);
     }
 }

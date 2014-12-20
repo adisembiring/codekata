@@ -20,6 +20,6 @@ public class When_mix_discount_applied extends MixDiscountContext {
     @Test
     public void total_should_incoude_pringles_discount_pepsi_discount_and_citato_normal_price() {
         float expected = pringlesDiscount.getDiscountPrice() + pepsi.getPrice() * 2 + citato.getPrice() * 2;
-        assertEquals(expected, cart.getTotalPrice(), 0);
+        assertEquals(expected, cart.getTotal(), 0);
     }
 }

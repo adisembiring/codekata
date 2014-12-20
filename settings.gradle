@@ -2,3 +2,5 @@ rootProject.name = 'CodeKata'
 
 include '01-SuperMarketPricing'
 
+include '09-BackToCheckout'
+

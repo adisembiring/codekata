@@ -8,35 +8,35 @@ import java.util.Optional;
 /**
  * Created by adisembiring on 12/16/2014.
  */
-public class ShoppingCart {
-    private List<CartItem> items;
+public class Checkout {
+    private List<Item> items;
     private List<Discount> discounts;
 
-    public ShoppingCart() {
+    public Checkout() {
         items = new ArrayList<>();
         discounts = new ArrayList<>();
     }
 
     public void addItem(Product product, int quantity) {
         if (!isExists(product)) {
-            items.add(new CartItem(product, quantity));
+            items.add(new Item(product, quantity));
         } else {
-            CartItem item = getItem(product);
+            Item item = getItem(product);
             item.addQuantity(quantity);
         }
     }
 
-    private Optional<Discount> getProductDiscount(CartItem item) {
+    private Optional<Discount> getProductDiscount(Item item) {
         return discounts.stream().filter(x -> x.evaluate(item)).findFirst();
     }
 
-    public Collection<CartItem> getItems() {
+    public Collection<Item> getItems() {
         return items;
     }
 
-    public float getTotalPrice() {
+    public float getTotal() {
         float totalPrice = 0;
-        for (CartItem item : items) {
+        for (Item item : items) {
             Optional<Discount> discount = getProductDiscount(item);
             if (discount.isPresent()) {
                 totalPrice += discount.get().calculatePrice(item);
@@ -51,7 +51,7 @@ public class ShoppingCart {
         return items.stream().filter(p -> p.getProduct().equals(product)).count() > 0;
     }
 
-    private CartItem getItem(Product product) {
+    private Item getItem(Product product) {
         return items.stream().filter(p -> p.getProduct().equals(product)).findFirst().get();
     }
 

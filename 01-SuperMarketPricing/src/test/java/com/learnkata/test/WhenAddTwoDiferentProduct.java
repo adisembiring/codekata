@@ -24,6 +24,6 @@ public class WhenAddTwoDiferentProduct extends ShopingCartContext {
     @Test
     public void price_equal_from_first_and_second_price() {
         float expected = citato.getPrice() + pringles.getPrice();
-        assertEquals(expected, cart.getTotalPrice(), 0);
+        assertEquals(expected, cart.getTotal(), 0);
     }
 }

@@ -3,11 +3,11 @@ package com.learnkata.kata01;
 /**
  * Created by adisembiring on 12/16/2014.
  */
-public class CartItem {
+public class Item {
     private final Product product;
     private int quantity;
 
-    public CartItem(Product product, int quantity) {
+    public Item(Product product, int quantity) {
         this.product = product;
         this.quantity = quantity;
     }
@@ -30,7 +30,7 @@ public class CartItem {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        CartItem cartItem = (CartItem) o;
+        Item cartItem = (Item) o;
 
         if (quantity != cartItem.quantity) return false;
         if (product != null ? !product.equals(cartItem.product) : cartItem.product != null) return false;

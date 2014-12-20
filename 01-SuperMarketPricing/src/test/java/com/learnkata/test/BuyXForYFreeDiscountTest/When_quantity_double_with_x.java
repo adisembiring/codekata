@@ -18,6 +18,6 @@ public class When_quantity_double_with_x extends BuyXForYFreeDiscountContext {
     @Test
     public void total_should_equal_to_discount_price() {
         float expected = pepsi.getPrice() * 4;
-        assertEquals(expected, cart.getTotalPrice(), 0);
+        assertEquals(expected, cart.getTotal(), 0);
     }
 }
