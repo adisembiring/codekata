@@ -29,7 +29,7 @@ public class Checkout {
     }
 
     private Optional<Discount> getProductDiscount(Item item) {
-        return discounts.stream().filter(x -> x.evaluate(item)).findFirst();
+        return discounts.stream().filter(x -> x.evaluate(item.getProduct(), item.getQuantity())).findFirst();
     }
 
     public Collection<Item> getItems() {
@@ -40,11 +40,7 @@ public class Checkout {
         float totalPrice = 0;
         for (Item item : items) {
             Optional<Discount> discount = getProductDiscount(item);
-            if (discount.isPresent()) {
-                totalPrice += discount.get().calculatePrice(item);
-            } else {
-                totalPrice += item.getQuantity() * item.getProduct().getPrice();
-            }
+            totalPrice += item.getPrice(discount);
         }
         return totalPrice;
     }

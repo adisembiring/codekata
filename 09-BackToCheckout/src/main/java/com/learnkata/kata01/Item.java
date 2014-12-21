@@ -1,5 +1,7 @@
 package com.learnkata.kata01;
 
+import java.util.Optional;
+
 /**
  * Created by adisembiring on 12/16/2014.
  */
@@ -45,4 +47,11 @@ public class Item {
         return result;
     }
 
+    public float getPrice(Optional<Discount> discount) {
+        if (discount.isPresent()) {
+            return discount.get().discount(product, quantity);
+        } else {
+            return quantity * product.getPrice();
+        }
+    }
 }

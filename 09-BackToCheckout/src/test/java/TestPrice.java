@@ -43,12 +43,6 @@ public class TestPrice {
         co.scan("B");  assertEquals(175, co.getTotal(), 0);
     }
 
-    public float price(String items) {
-        init();
-        Arrays.asList(items.split("(?!^)")).forEach(item -> co.scan(item));
-        return co.getTotal();
-    }
-
     private void init() {
         Product a = new Product(1, "A", 50);
         Product b = new Product(2, "B", 30);
@@ -58,4 +52,11 @@ public class TestPrice {
         co.addDiscountPolicy(new BuyXForYPriceDiscount(1, "Product A, 3 For 130", a, 3, 130f));
         co.addDiscountPolicy(new BuyXForYPriceDiscount(2, "Product B, 2 For 45", b, 2, 45f));
     }
+
+    private float price(String items) {
+        init();
+        Arrays.asList(items.split("(?!^)")).forEach(item -> co.scan(item));
+        return co.getTotal();
+    }
+
 }

@@ -24,23 +24,19 @@ public class BuyXForYFreeDiscount extends Discount {
     }
 
     @Override
-    boolean evaluate(Item item) {
-        return product.equals(item.getProduct()) && item.getQuantity() >= requiredQuantity;
+    boolean evaluate(Product product, int quantity) {
+        return this.product.equals(product) && quantity >= requiredQuantity;
     }
 
     @Override
-    public float calculatePrice(Item item) {
-        if (!evaluate(item)) {
-            throw new IllegalArgumentException("Product is not availiable for discount");
-        }
+    public float discount(Product product, int quantity) {
+        int n = Math.floorDiv(quantity, requiredQuantity + freeQuantity);
+        int div = quantity % (requiredQuantity + freeQuantity);
 
-        int n = Math.floorDiv(item.getQuantity(), requiredQuantity + freeQuantity);
-        int div = item.getQuantity() % (requiredQuantity + freeQuantity);
-
-        return (n * getDiscountPrice(item)) + (div * item.getProduct().getPrice());
+        return (n * getDiscountPrice(product)) + (div * product.getPrice());
     }
 
-    private float getDiscountPrice(Item item) {
-        return item.getProduct().getPrice() * requiredQuantity;
+    private float getDiscountPrice(Product product) {
+        return product.getPrice() * requiredQuantity;
     }
 }

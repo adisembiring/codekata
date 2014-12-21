@@ -20,6 +20,6 @@ public abstract class Discount {
         return name;
     }
 
-    abstract boolean evaluate(Item item);
-    abstract float calculatePrice(Item item);
+    abstract boolean evaluate(Product product, int quantity);
+    abstract float discount(Product product, int quantity);
 }
